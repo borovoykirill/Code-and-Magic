@@ -29,7 +29,7 @@ window.renderStatistics = function(ctx, players, times) {
     renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.3)');
     renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
-    ctx.fillStyle = '#5473F7';
+    ctx.fillStyle = '#000';
 
     var maxTime = getMaxElement(times);
 
