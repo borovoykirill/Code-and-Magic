@@ -1,13 +1,58 @@
+// Находим нужные нам блоки и создаем функцию открытия/закрытия окна персонажа
 var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = document.querySelector('.setup-close');
 
+
+var onPopupEscPress = function(evt) {
+  if (evt.keyCode === 27) {
+      closePopup();
+  }
+};
+
+var openPopup = function() {
+  setup.classList.remove('hidden');
+  document.addEventListener('keydown', onPopupEscPress);
+};
+
+var closePopup = function () {
+    setup.classList.add('hidden');
+    document.removeEventListener('keydown', onPopupEscPress);
+};
+
 setupOpen.addEventListener('click', function () {
-   setup.classList.remove('hidden');
+   openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) {
+   if (evt.keyCode === 13) {
+       openPopup();
+   }
 });
 
 setupClose.addEventListener('click', function () {
-    setup.classList.add('hidden')
+    closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 13) {
+        closePopup();
+    }
+});
+
+// Делаем кастомную валидацию с помощью "required" в поле <form>
+userNameInput = setup.querySelector('.setup-user-name');
+
+userNameInput.addEventListener('invalid', function (evt) {
+    if (userNameInput.validity.tooShort) {
+        userNameInput.setCustomValidity('Имя должно состоять минимум из 2-ух символов');
+    } else if (userNameInput.validity.tooLong) {
+        userNameInput.setCustomValidity ('Имя не должно превышать 25-ти символов');
+    } else if (userNameInput.validity.valueMissing) {
+        userNameInput.setCustomValidity('Обязательное поле');
+    } else {
+        userNameInput.setCustomValidity('');
+    }
 });
 
 // Использую шаблонизацию для создания списка похожих игроков
@@ -57,37 +102,29 @@ for (var i = 0; i < wizards.length; i++) {
     similarListElement.appendChild(wizardElement);
 }
 
+// Изменяем эелементы по клику
+var setupFireball = document.querySelector('.setup-fireball-wrap');
+var inputFireball = document.querySelector('input[name="fireball-color"]');
+var setupWizardCoat = document.querySelector('.wizard-coat');
+var inputWizardCoat = document.querySelector('input[name="coat-color"]');
+var setupWizardEyes = document.querySelector('.wizard-eyes');
+var inputWizardEyes = document.querySelector('input[name="eyes-color"]');
 
 
+var setColor = function (domElement, domElementProperty, colors, inputElement) {
+    var color = window.utils.getRandomElement(colors); // берем случайный цвет из полученного диапазона
+    domElement.style[domElementProperty] = color; // меняем цвет заданного элемента на сгенерированный
+    inputElement.value = color; // обновляем значение соответствующего инпута
+};
 
-// var userDialog = document.querySelector('.setup');
-// userDialog.classList.remove('hidden');
+setupFireball.addEventListener('click', function () {
+    setColor(setupFireball, 'background', window.utils.fireballColors, inputFireball);
+});
 
-// var firstNames = [
-//     'Kirill',
-//     'Max',
-//     'Sanya'
-// ];
-//
-// var secondNames = [
-//     'Kudosh',
-//     'Borovoy',
-//     'Shelest'
-// ];
+setupWizardCoat.addEventListener('click', function() {
+   setColor(setupWizardCoat, 'fill', window.utils.coatColors, inputWizardCoat);
+});
 
-
-// var randNames = Math.floor(Math.random() * firstNames.length);
-//
-//
-// var randSurnames = Math.floor(Math.random() * secondNames.length);
-//
-// var nicknames = function () {
-//     var test = [];
-//
-//     for (var i = 0; i <= 4; i++) {
-//        test[i] = firstNames[randNames] + ' ' + secondNames[randSurnames];
-//        alert(test[i]);
-//     }
-// };
-//
-// nicknames();
+setupWizardEyes.addEventListener('click', function() {
+    setColor(setupWizardEyes, 'fill', window.utils.coatColors, inputWizardEyes);
+});
