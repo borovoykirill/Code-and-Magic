@@ -1,3 +1,4 @@
+// Отрисовываем облако со статой игроков
 var CLOUD_WIDTH = 500;
 var CLOUD_HEIGHT = 180;
 var CLOUD_X = 100;
