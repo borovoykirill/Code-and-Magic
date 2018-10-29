@@ -1,6 +1,16 @@
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
+var setupOpen = document.querySelector('.setup-open');
+var setup = document.querySelector('.setup');
+var setupClose = document.querySelector('.setup-close');
 
+setupOpen.addEventListener('click', function () {
+   setup.classList.remove('hidden');
+});
+
+setupClose.addEventListener('click', function () {
+    setup.classList.add('hidden')
+});
+
+// Использую шаблонизацию для создания списка похожих игроков
 document.querySelector('.setup-similar').classList.remove('hidden');
 
 var similarListElement = document.querySelector('.setup-similar-list');
@@ -13,35 +23,6 @@ var WIZARD_NAMES = [
   'Artas',
   'Legolas'
 ];
-
-var firstNames = [
-    'Kirill',
-    'Max',
-    'Sanya'
-];
-
-var secondNames = [
-    'Kudosh',
-    'Borovoy',
-    'Shelest'
-];
-
-
-var randNames = Math.floor(Math.random() * firstNames.length);
-
-
-var randSurnames = Math.floor(Math.random() * secondNames.length);
-
-var nicknames = function () {
-    var test = [];
-
-    for (var i = 0; i <= 4; i++) {
-       test[i] = firstNames[randNames] + ' ' + secondNames[randSurnames];
-       alert(test[i]);
-    }
-};
-
-nicknames();
 
 var wizards = [
     {
@@ -77,3 +58,36 @@ for (var i = 0; i < wizards.length; i++) {
 }
 
 
+
+
+// var userDialog = document.querySelector('.setup');
+// userDialog.classList.remove('hidden');
+
+// var firstNames = [
+//     'Kirill',
+//     'Max',
+//     'Sanya'
+// ];
+//
+// var secondNames = [
+//     'Kudosh',
+//     'Borovoy',
+//     'Shelest'
+// ];
+
+
+// var randNames = Math.floor(Math.random() * firstNames.length);
+//
+//
+// var randSurnames = Math.floor(Math.random() * secondNames.length);
+//
+// var nicknames = function () {
+//     var test = [];
+//
+//     for (var i = 0; i <= 4; i++) {
+//        test[i] = firstNames[randNames] + ' ' + secondNames[randSurnames];
+//        alert(test[i]);
+//     }
+// };
+//
+// nicknames();
