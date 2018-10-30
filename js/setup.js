@@ -61,43 +61,16 @@ document.querySelector('.setup-similar').classList.remove('hidden');
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
-
-var WIZARD_NAMES = [
-  'Damboldor',
-  'Varian',
-  'Artas',
-  'Legolas'
-];
-
-var wizards = [
-    {
-        name: WIZARD_NAMES[0],
-        coatColor: 'rgb(241, 43, 107)',
-        eyesColor: 'red'
-    },
-    {
-        name: WIZARD_NAMES[1],
-        coatColor: 'rgb(215, 210, 55)',
-        eyesColor: 'black'
-    },
-    {
-        name: WIZARD_NAMES[2],
-        coatColor: 'rgb(101, 137, 164)',
-        eyesColor: 'yellow'
-    },
-    {
-        name: WIZARD_NAMES[3],
-        coatColor: 'rgb(127, 127, 127)',
-        eyesColor: 'blue'
-    }
-];
-
-for (var i = 0; i < wizards.length; i++) {
+for (var i = 0; i <= 3; i++) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
+    var wizardName = window.utils.getRandomElement(window.utils.names) + ' ' + window.utils.getRandomElement(window.utils.surnames);
+    var wizardCoatColor = window.utils.getRandomElement(window.utils.coatColors);
+    var wizardEyesColor = window.utils.getRandomElement(window.utils.eyesColors);
 
-    wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
+
+    wizardElement.querySelector('.setup-similar-label').textContent = wizardName;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizardCoatColor;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizardEyesColor;
 
     similarListElement.appendChild(wizardElement);
 }
@@ -128,3 +101,7 @@ setupWizardCoat.addEventListener('click', function() {
 setupWizardEyes.addEventListener('click', function() {
     setColor(setupWizardEyes, 'fill', window.utils.coatColors, inputWizardEyes);
 });
+
+document.querySelectorAll('.setup-similar-label').textContent = 'Skibidish';
+
+
