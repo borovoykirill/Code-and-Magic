@@ -1,11 +1,12 @@
 // Находим нужные нам блоки и создаем функцию открытия/закрытия окна персонажа
+
 var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = document.querySelector('.setup-close');
 
 
 var onPopupEscPress = function(evt) {
-  if (evt.keyCode === 27) {
+  if (evt.keyCode === window.utils.ESC_KEYCODE) {
       closePopup();
   }
 };
@@ -25,7 +26,7 @@ setupOpen.addEventListener('click', function () {
 });
 
 setupOpen.addEventListener('keydown', function (evt) {
-   if (evt.keyCode === 13) {
+   if (evt.keyCode === window.utils.ENTER_KEYCODE) {
        openPopup();
    }
 });
@@ -35,7 +36,7 @@ setupClose.addEventListener('click', function () {
 });
 
 setupClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === 13) {
+    if (evt.keyCode === window.utils.ENTER_KEYCODE) {
         closePopup();
     }
 });
@@ -101,7 +102,4 @@ setupWizardCoat.addEventListener('click', function() {
 setupWizardEyes.addEventListener('click', function() {
     setColor(setupWizardEyes, 'fill', window.utils.coatColors, inputWizardEyes);
 });
-
-document.querySelectorAll('.setup-similar-label').textContent = 'Skibidish';
-
 
